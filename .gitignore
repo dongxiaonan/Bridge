@@ -30,3 +30,33 @@
 *.exe
 *.out
 *.app
+
+# User-specific files
+*.suo
+*.user
+*.dat
+*.map
+*.log
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+bld/
+[Bb]in/
+!/Libs/**/bin/
+[Oo]bj/
+/Build
+
+# NuGet Packages
+*.nupkg
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+
+# Rider files
+.idea/
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx

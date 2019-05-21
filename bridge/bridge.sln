@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bridge", "bridge.csproj", "{A31608B5-7687-46A6-ADA8-AA7AE0259266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bridgeUnitTests", "bridgeUnitTests\bridgeUnitTests.csproj", "{DA85A85A-2CF5-48C6-B1B6-B1948C7C2F4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A31608B5-7687-46A6-ADA8-AA7AE0259266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A31608B5-7687-46A6-ADA8-AA7AE0259266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A31608B5-7687-46A6-ADA8-AA7AE0259266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A31608B5-7687-46A6-ADA8-AA7AE0259266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA85A85A-2CF5-48C6-B1B6-B1948C7C2F4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA85A85A-2CF5-48C6-B1B6-B1948C7C2F4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA85A85A-2CF5-48C6-B1B6-B1948C7C2F4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA85A85A-2CF5-48C6-B1B6-B1948C7C2F4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
