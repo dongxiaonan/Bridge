@@ -23,5 +23,11 @@ namespace bridgeUnitTests
         {
             Assert.Equal("White wins - FullHouse: 4", Program.Compare("2H 3D 2S 2C 3C", "4C 4D 4H 9S 9H"));
         }
+        
+        [Fact]
+        public void ShouldBlackWinsWhenWitDifferentTypeAndBlackIsFullHouse()
+        {
+            Assert.Equal("Black wins - FullHouse", Program.Compare("2H 3D 2S 2C 3C", "9C 3D 5H 9S KH"));
+        }
     }
 }

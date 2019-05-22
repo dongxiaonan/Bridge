@@ -4,7 +4,8 @@ namespace bridge
 {
     public class Program
     {
-        public const string outputTemplate = "{0} wins - {1}: {2}";
+        public const string sameTypeOutputTemplate = "{0} wins - {1}: {2}";
+        public const string diffTypeOutputTemplate = "{0} wins - {1}";
         public static void Main(string[] args)
         {
         }
@@ -23,13 +24,25 @@ namespace bridge
                 {
                     if (blackKeys[i] > whiteKeys[i])
                     {
-                        return string.Format(outputTemplate, "Black", black.CardType.ToString(), CardService.ConvertCardNumber(blackKeys[i]));
+                        return string.Format(sameTypeOutputTemplate, "Black", black.CardType.ToString(), CardService.ConvertCardNumber(blackKeys[i]));
                     }
                     
                     if (blackKeys[i] < whiteKeys[i])
                     {
-                        return string.Format(outputTemplate, "White", white.CardType.ToString(), CardService.ConvertCardNumber(whiteKeys[i]));
+                        return string.Format(sameTypeOutputTemplate, "White", white.CardType.ToString(), CardService.ConvertCardNumber(whiteKeys[i]));
                     }
+                }
+            }
+            else
+            {
+                if (black.CardType > white.CardType)
+                {
+                    return string.Format(diffTypeOutputTemplate, "Black", black.CardType.ToString());
+                }
+                
+                if (black.CardType < white.CardType)
+                {
+                    return string.Format(diffTypeOutputTemplate, "White", white.CardType.ToString());
                 }
             }
             

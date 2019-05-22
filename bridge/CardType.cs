@@ -2,14 +2,14 @@ namespace bridge
 {
     public enum CardType
     {
-        HighCard,
-        OnePair,
-        TwoPairs,
-        ThreeOfAKind,
-        Straight,
-        Flush,
-        FullHouse,
-        FourOfAKind,
-        StraightFlush,  
+        HighCard = 0,
+        OnePair = 1,
+        TwoPairs = 2,
+        ThreeOfAKind = 3,
+        Straight = 4,
+        Flush = 5,
+        FullHouse = 6,
+        FourOfAKind = 7,
+        StraightFlush = 8,  
     }
 }
