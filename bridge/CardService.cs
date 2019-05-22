@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using bridge.model;
 
 namespace bridge
 {
@@ -7,43 +8,19 @@ namespace bridge
     {
         public Card Generate(string card)
         {
-            var generateCard = new Card();
             var cardInfo = card.Split(' ').ToList();
-            var cardNumbers = cardInfo.Select(x => ConvertCardNumber(x)).OrderBy(x => x).ToList();
+            var cardNumbers = cardInfo.Select(CardHelper.Convert).OrderBy(x => x).ToList();
             var cardColors = cardInfo.Select(x => x.Last().ToString()).ToList();
 
-            generateCard.CardNumbers = GetCardNumbers(cardNumbers);
-            generateCard.CardType = GetCardType(generateCard.CardNumbers, cardColors);
-
-            return generateCard;
-        }
-
-        private int ConvertCardNumber(string number)
-        {
-            number = number.Remove(number.Length -1, 1);
-            switch (number)
+            var generateCardNumbers = GetCardNumbers(cardNumbers);
+            return new Card()
             {
-                case "A": return 14; 
-                case "K": return 13; 
-                case "Q": return 12; 
-                case "J": return 11; 
-                default: return int.Parse(number);
-            }
-        }
-        
-        public static string ConvertCardNumber(int number)
-        {
-            switch (number)
-            {
-                case 14: return "Ace"; 
-                case 13: return "K"; 
-                case 12: return "Q"; 
-                case 11: return "J"; 
-                default: return number.ToString();
-            }
+                CardNumbers = generateCardNumbers,
+                CardType = GetCardType(generateCardNumbers, cardColors)
+            };
         }
 
-        private static CardType GetCardType(Dictionary<int, int> sameNumber, List<string> cardColors)
+        private CardType GetCardType(Dictionary<int, int> sameNumber, List<string> cardColors)
         {
             var cardType = CardType.HighCard;
             var isFlush = cardColors.Distinct().Count() == 1;
@@ -74,7 +51,7 @@ namespace bridge
             return cardType;
         }
 
-        private static Dictionary<int, int> GetCardNumbers(List<int> cardNumbers)
+        private Dictionary<int, int> GetCardNumbers(List<int> cardNumbers)
         {
             var sameNumber = new Dictionary<int, int>()
             {
@@ -95,6 +72,62 @@ namespace bridge
             }
 
             return sameNumber;
+        }
+
+        private List<Player> InitializePlayers(string blackCards, string whiteCards)
+        {
+            return new List<Player>()
+            {
+                new Player()
+                {
+                    Name = "Black",
+                    Card = Generate(blackCards)
+                }, 
+                new Player()
+                {
+                    Name = "White",
+                    Card = Generate(whiteCards)
+                }
+            };
+        }
+        
+        public string Excute(string blackCards, string whiteCards)
+        {
+            var playerList = InitializePlayers(blackCards, whiteCards)
+                .OrderByDescending(p => p.Card.CardType)
+                .ToList();
+
+            return Compare(playerList);
+        }
+
+        private static string Compare(List<Player> playerList)
+        {
+            if (playerList.First().Card.CardType == playerList.Last().Card.CardType)
+            {
+                var black = playerList.First();
+                var white = playerList.Last();
+
+                var blackKeys = black.Card.CardNumbers.Keys.ToList();
+                var whiteKeys = white.Card.CardNumbers.Keys.ToList();
+                for (var i = 0; i < blackKeys.Count; i++)
+                {
+                    if (blackKeys[i] > whiteKeys[i])
+                    {
+                        return $"{black.Name} wins - {black.Card.CardType.ToString()}: {CardHelper.Convert(blackKeys[i])}";
+                    }
+
+                    if (blackKeys[i] < whiteKeys[i])
+                    {
+                        return $"{white.Name} wins - {white.Card.CardType.ToString()}: {CardHelper.Convert(whiteKeys[i])}";
+                    }
+                }
+            }
+            else
+            {
+                return $"{playerList.First().Name} wins - {playerList.First().Card.CardType.ToString()}";
+            }
+
+            return "Tie";
         }
     }
 }

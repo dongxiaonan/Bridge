@@ -1,4 +1,5 @@
 using bridge;
+using bridge.model;
 using Xunit;
 
 namespace bridgeUnitTests
@@ -67,6 +68,38 @@ namespace bridgeUnitTests
             var cardService = new CardService();
             var card = cardService.Generate("2H 3H 5H 4H 6H");
             Assert.Equal(CardType.StraightFlush, card.CardType);
+        }
+        
+        [Fact]
+        public void ShouldTieWhenSameHighCards()
+        {
+            var cardService = new CardService();
+
+            Assert.Equal("Tie", cardService.Excute("2H 3D 5S 9C KD", "2C 3D 5H 9S KH"));
+        }
+        
+        [Fact]
+        public void ShouldBlackWinsWhenWithHighCardA()
+        {            
+            var cardService = new CardService();
+
+            Assert.Equal("Black wins - HighCard: Ace", cardService.Excute("2H 3D 5S 9C AD", "2C 3D 5H 9S KH"));
+        }
+        
+        [Fact]
+        public void ShouldBlackWinsWhenWitFullHouse()
+        {
+            var cardService = new CardService();
+
+            Assert.Equal("White wins - FullHouse: 4", cardService.Excute("2H 3D 2S 2C 3C", "4C 4D 4H 9S 9H"));
+        }
+        
+        [Fact]
+        public void ShouldBlackWinsWhenWitDifferentTypeAndBlackIsFullHouse()
+        {
+            var cardService = new CardService();
+
+            Assert.Equal("White wins - FullHouse", cardService.Excute("9C 3D 5H 9S KH","2H 3D 2S 2C 3C"));
         }
     }
 

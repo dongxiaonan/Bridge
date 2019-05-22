@@ -52,7 +52,6 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="CardServiceTests.cs" />
-        <Compile Include="Tests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>

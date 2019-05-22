@@ -38,9 +38,11 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Card.cs" />
+        <Compile Include="CardHelper.cs" />
+        <Compile Include="model\Card.cs" />
+        <Compile Include="model\CardType.cs" />
         <Compile Include="CardService.cs" />
-        <Compile Include="CardType.cs" />
+        <Compile Include="model\Player.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

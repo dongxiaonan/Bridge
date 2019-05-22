@@ -1,4 +1,4 @@
-namespace bridge
+namespace bridge.model
 {
     public enum CardType
     {

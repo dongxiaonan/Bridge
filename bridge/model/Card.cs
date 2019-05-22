@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace bridge
+namespace bridge.model
 {
     public class Card
     {
