@@ -9,13 +9,19 @@ namespace bridgeUnitTests
         [Fact]
         public void ShouldTieWhenSameHighCards()
         {
-            Assert.Equal(0, Program.Compare("2H 3D 5S 9C KD", "2C 3D 5H 9S KH"));
+            Assert.Equal("Tie", Program.Compare("2H 3D 5S 9C KD", "2C 3D 5H 9S KH"));
         }
         
         [Fact]
         public void ShouldBlackWinsWhenWithHighCardA()
         {
-            Assert.Equal(1, Program.Compare("2H 3D 5S 9C AD", "2C 3D 5H 9S KH"));
+            Assert.Equal("Black wins - HighCard: Ace", Program.Compare("2H 3D 5S 9C AD", "2C 3D 5H 9S KH"));
+        }
+        
+        [Fact]
+        public void ShouldBlackWinsWhenWitFullHouse()
+        {
+            Assert.Equal("White wins - FullHouse: 4", Program.Compare("2H 3D 2S 2C 3C", "4C 4D 4H 9S 9H"));
         }
     }
 }

@@ -30,6 +30,18 @@ namespace bridge
                 default: return int.Parse(number);
             }
         }
+        
+        public static string ConvertCardNumber(int number)
+        {
+            switch (number)
+            {
+                case 14: return "Ace"; 
+                case 13: return "K"; 
+                case 12: return "Q"; 
+                case 11: return "J"; 
+                default: return number.ToString();
+            }
+        }
 
         private static CardType GetCardType(Dictionary<int, int> sameNumber, List<string> cardColors)
         {
